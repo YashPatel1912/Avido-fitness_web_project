@@ -1,0 +1,43 @@
+version: "3.8"
+
+services:
+  postgres:
+    image: postgres:15
+    container_name: postgres-db
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres@12
+      POSTGRES_DB: Avido-fitness
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+  backend:
+    build: ./server
+    image: yashpatel33/avido-fitness-prostgres-backend:latest
+    container_name: backend-app
+    restart: always
+    ports:
+      - "4000:4000"
+    env_file:
+      - ./server/.env
+    volumes:
+      - ./server:/app
+      - ./server/.env:/app/.env
+    depends_on:
+      - postgres
+
+  frontend:
+    build: ./client
+    container_name: frontend-app
+    image: yashpatel33/avido-fitness-prostgres-frontend:latest
+    restart: always
+    ports:
+      - "5173:80"
+    depends_on:
+      - backend
+
+volumes:
+  pgdata:
