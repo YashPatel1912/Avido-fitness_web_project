@@ -29,7 +29,7 @@ app.use(cookieParser());
 
 const corsOptions = {
   origin:
-    process.env.FRONTEND_URL || "https://avido-fitness-web-demo.vercel.app",
+    process.env.FRONTEND_URL || "https://avido-fitness-web-project.vercel.app",
   methods: ["GET", "HEAD", "PUT", "PATCH", "POST", "DELETE"],
   credentials: true,
 };

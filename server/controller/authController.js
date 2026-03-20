@@ -265,7 +265,7 @@ export const postCheckOut = async (req, res) => {
     }
 
     const FRONTEND_URL =
-      process.env.FRONTEND_URL || "https://avido-fitness-web-demo.vercel.app";
+      process.env.FRONTEND_URL || "https://avido-fitness-web-project.vercel.app";
 
     if (!process.env.STRIPE_API_KEY) {
       console.error("Stripe key missing in environment variables");
